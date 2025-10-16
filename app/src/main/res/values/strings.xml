@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MCPE Proxy</string>
+    <string name="server_address">Server Address and Port:</string>
+    <string name="address_hint">server.ddns.net</string>
+    <string name="server_port">Server Port:</string>
+    <string name="port_hint">19132</string>
+    <string name="enable_proxy">Enable Proxy</string>
+    <string name="disable_proxy">Disable Proxy</string>
+    <string name="status_stopped">Status: Stopped</string>
+    <string name="status_running">Status: Running on 0.0.0.0:19132</string>
+    <string name="error_invalid_address">Error: Invalid address</string>
+    <string name="error_invalid_port">Error: Invalid port</string>
+    <string name="notification_title">MCPE Proxy Active</string>
+    <string name="notification_text">Proxy is running on port 19132</string>
+    <string name="notification_stop">Stop Proxy</string>
+    <string name="channel_name">Proxy Service</string>
+    <string name="channel_description">Notifications for MCPE Proxy service</string>
+    <string name="made_by">Made by eqozqq</string>
+</resources>
