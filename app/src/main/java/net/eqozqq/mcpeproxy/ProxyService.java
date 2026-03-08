@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+import android.content.pm.ServiceInfo;
 import android.os.PowerManager;
 
 import androidx.core.app.NotificationCompat;
@@ -80,8 +81,7 @@ public class ProxyService extends Service {
             NotificationChannel channel = new NotificationChannel(
                     CHANNEL_ID,
                     getString(R.string.channel_name),
-                    NotificationManager.IMPORTANCE_LOW
-            );
+                    NotificationManager.IMPORTANCE_LOW);
             channel.setDescription(getString(R.string.channel_description));
 
             NotificationManager manager = getSystemService(NotificationManager.class);
@@ -104,8 +104,7 @@ public class ProxyService extends Service {
                 this,
                 0,
                 notificationIntent,
-                flags
-        );
+                flags);
 
         Intent stopIntent = new Intent(this, ProxyService.class);
         stopIntent.setAction(ACTION_STOP_FROM_NOTIFICATION);
@@ -113,8 +112,7 @@ public class ProxyService extends Service {
                 this,
                 0,
                 stopIntent,
-                flags
-        );
+                flags);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(getString(R.string.notification_title))
@@ -167,9 +165,10 @@ public class ProxyService extends Service {
     }
 
     private void startForegroundCompat() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(NOTIFICATION_ID, createNotification());
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(NOTIFICATION_ID, createNotification(),
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForeground(NOTIFICATION_ID, createNotification());
         } else {
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
